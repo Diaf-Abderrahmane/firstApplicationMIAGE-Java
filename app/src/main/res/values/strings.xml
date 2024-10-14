@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">firstApplicationMIAGE</string>
+    <string name="dialog_message">message</string>
+    <string name="dialog_title">Confirmation</string>
+</resources>
