@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -15,6 +16,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.Nullable;
@@ -28,11 +30,15 @@ import com.github.dhaval2404.imagepicker.ImagePicker;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     final Calendar myCalendar= Calendar.getInstance();
     EditText edtBirthDate;
+    private List<Person> personList;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +52,9 @@ public class MainActivity extends AppCompatActivity {
 
 
         });
+
+        personList = PersonListHelper.loadPersonList(this);
+
 
 //        ImagePicker.with(this)
 //                .crop()	    			//Crop image(Optional), Check Customization for more option
@@ -76,6 +85,16 @@ public class MainActivity extends AppCompatActivity {
                 new DatePickerDialog(MainActivity.this,date,myCalendar.get(Calendar.YEAR),myCalendar.get(Calendar.MONTH),myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
+    }
+
+    private void clearPreferences() {
+        // Get SharedPreferences
+        SharedPreferences preferences = getSharedPreferences("PersonListPref", MODE_PRIVATE);
+
+        // Clear all data in SharedPreferences
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.clear();
+        editor.apply(); // or editor.commit(); if you want it to be synchronous
     }
 
 //    @Override
@@ -163,12 +182,16 @@ public class MainActivity extends AppCompatActivity {
                 edtEmail.setError("Veuillez entrer une adresse email valide");
             } else {
                 Person person = new Person(edtName.getText().toString(), edtFirstName.getText().toString(), rbHomme.isChecked() ? "Homme" : "Femme", edtBirthDate.getText().toString(), edtEmail.getText().toString(), edtAddress.getText().toString(), edtPhoneNumber.getText().toString());
+                personList.add(person);
+                PersonListHelper.savePersonList(MainActivity.this, personList);
+                Toast.makeText(this, "Personne créée avec succès", Toast.LENGTH_SHORT).show();
 
-
-                Intent intent = new Intent(this, ActivityTwo.class);
+                // navigate to persons list
+                Intent intent = new Intent(this, PersonsListView.class);
                 intent.putExtra("person", person);
 
                 startActivity(intent);
+
             }
         });
         confirmationBuilder.setNegativeButton("Annuler", (null));
@@ -179,11 +202,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @SuppressLint("DefaultLocale")
-    public void btnToActivityThree(View view) {
-        EditText edtName = findViewById(R.id.edtName);
-        Intent intent = new Intent(this, ActivityThree.class);
-        intent.putExtra("message", edtName.getText().toString());
-        startActivity(intent);
+    public void btnToPersonsList(View view) {
+//        EditText edtName = findViewById(R.id.edtName);
+//        EditText edtFirstName = findViewById(R.id.edtFirstName);
+//        EditText edtEmail = findViewById(R.id.edtEmail);
+//
+//        Person person = new Person(edtName.getText().toString(), edtFirstName.getText().toString(), null , null, edtEmail.getText().toString(), null, null);
+//
+//        personList.add(person);
+//        PersonListHelper.savePersonList(MainActivity.this, personList);
+//
+//
+//        // navigate to persons list
+//        Intent intent = new Intent(this, PersonsListView.class);
+//        intent.putExtra("person", person);
+//
+//        startActivity(intent);
     }
 
 }

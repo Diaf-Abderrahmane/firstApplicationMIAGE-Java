@@ -18,6 +18,7 @@ public class Person implements Serializable {
         this.birthDate = birthDate;
         this.email = email;
         this.address = address;
+        this.phoneNumber = phoneNumber;
     }
 
     public String getName() {
