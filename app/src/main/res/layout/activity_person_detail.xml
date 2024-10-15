@@ -5,21 +5,25 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ActivityTwo"
-    android:orientation="vertical">
+    tools:context=".PersonDetailActivity"
+    android:orientation="vertical"
+    android:background="@color/bg_color">
 
     <ImageView
         android:id="@+id/imageViewPerson"
         android:layout_marginHorizontal="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_width="200dp"
+        android:layout_height="150dp"
         android:layout_marginTop="20dp"
-        android:layout_gravity="center_horizontal"/>
+        android:scaleType="centerCrop"
+        android:background="@drawable/rounded"
+        android:layout_gravity="center"/>
+
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         app:cardCornerRadius="30dp"
         app:cardElevation="20dp">
 
@@ -169,6 +173,18 @@
                     android:textSize="20sp"
                     android:layout_marginStart="20dp"/>
             </LinearLayout>
+
+            <Button
+                android:id="@+id/buttonDelete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Supprimer\ncontact"
+                android:layout_gravity="center"
+                android:layout_marginTop="40dp"
+                android:backgroundTint="@color/red"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:onClick="deletePerson"/>
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

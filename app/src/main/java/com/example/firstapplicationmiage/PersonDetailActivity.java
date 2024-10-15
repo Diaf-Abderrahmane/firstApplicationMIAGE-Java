@@ -3,8 +3,12 @@ package com.example.firstapplicationmiage;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class PersonDetailActivity extends AppCompatActivity {
@@ -25,6 +29,7 @@ public class PersonDetailActivity extends AppCompatActivity {
         textViewPhoneNumber = findViewById(R.id.tvResultPhoneNumber);
 
         imageViewPerson = findViewById(R.id.imageViewPerson);
+        imageViewPerson.setClipToOutline(true);
 
 
 
@@ -54,6 +59,22 @@ public class PersonDetailActivity extends AppCompatActivity {
             }
 
         }
+        Button btnDelete = findViewById(R.id.buttonDelete);
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deletePerson(person); // Pass the whole Person object
+            }
+        });
+
+    }
+
+    private void deletePerson(Person person) {
+        PersonListHelper.deletePerson(this, person);
+        Toast.makeText(this, "Person deleted", Toast.LENGTH_SHORT).show();
+
+        Intent intent = new Intent(this, PersonsListView.class);
+        startActivity(intent);
     }
 }
 

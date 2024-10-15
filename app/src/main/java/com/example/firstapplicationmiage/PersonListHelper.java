@@ -35,4 +35,15 @@ public class PersonListHelper {
         Type type = new TypeToken<ArrayList<Person>>() {}.getType();
         return json == null ? new ArrayList<>() : gson.fromJson(json, type);
     }
+
+    public static void deletePerson(Context context, Person personToDelete) {
+        // Load the existing person list
+        List<Person> personList = loadPersonList(context);
+
+        // Remove the person from the list
+        personList.removeIf(person -> person.getId().equals(personToDelete.getId())); // Assuming email is unique
+
+        // Save the updated list back to SharedPreferences
+        savePersonList(context, personList);
+    }
 }

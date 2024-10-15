@@ -1,11 +1,11 @@
 package com.example.firstapplicationmiage;
-import android.net.Uri;
-import android.widget.ImageView;
+import java.util.UUID;
+
 
 import java.io.Serializable;  // To make the class Serializable
 
 public class Person implements Serializable {
-
+    private String id;
     private String name;
     private String firstName;
     private String gender;
@@ -16,6 +16,7 @@ public class Person implements Serializable {
     private String imageUri;
 
     public Person(String name, String firstName, String gender, String birthDate, String email, String address, String phoneNumber, String imageUri) {
+        this.id = UUID.randomUUID().toString();
         this.name = name;
         this.firstName = firstName;
         this.gender = gender;
@@ -61,5 +62,9 @@ public class Person implements Serializable {
 
     public void setImageUri(String imageUri) {
         this.imageUri = imageUri;
+    }
+
+    public String getId() {
+        return id;
     }
 }

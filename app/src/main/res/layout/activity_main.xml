@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+<RelativeLayout
     android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,14 +28,13 @@
             android:id="@+id/buttonAddImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add Image"
+            android:text="Ajouter Image"
             android:layout_gravity="center"/>
 
         <EditText
         android:id="@+id/edtName"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_above="@+id/button"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="40dp"
         android:layout_marginEnd="40dp"
@@ -49,7 +47,6 @@
             android:id="@+id/edtFirstName"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_above="@+id/button"
             android:layout_centerHorizontal="true"
             android:layout_marginStart="40dp"
             android:layout_marginEnd="40dp"
@@ -85,19 +82,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Ajouter image"
-                android:textColor="@color/gray"/>
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/attachment_svgrepo_com"
-                android:clickable="true"
-                android:layout_marginTop="13dp"
-                android:layout_marginStart="5dp"
-                />
 
 
         </LinearLayout>
@@ -115,7 +99,7 @@
             android:layout_marginTop="20dp"
             android:ems="10"
             android:inputType="date"
-            android:hint="Date de naissance"
+            android:hint="Date de naissance *"
             android:clickable="false"
             android:cursorVisible="false"
             android:focusable="false"
@@ -132,7 +116,7 @@
             android:layout_marginTop="20dp"
             android:ems="10"
             android:inputType="textEmailAddress"
-            android:hint="Email"/>
+            android:hint="Email *"/>
 
         <EditText
             android:id="@+id/edtAddress"
@@ -176,14 +160,8 @@
             android:text="Valider"
             android:onClick="btnToActivityTwo"/>
 
-<!--        <Button-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginStart="40dp"-->
-<!--            android:layout_marginEnd="40dp"-->
-<!--            android:text="Valider vers Activity 3"-->
-<!--            android:onClick="btnToPersonsList"/>-->
-    </LinearLayout>
-</ScrollView>
 
-</RelativeLayout>
+    </LinearLayout>
+
+    </RelativeLayout>
+    </ScrollView>

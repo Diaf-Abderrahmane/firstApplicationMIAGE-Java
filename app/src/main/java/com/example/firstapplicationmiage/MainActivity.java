@@ -65,16 +65,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        // Check if this is the first launch
-        SharedPreferences preferences = getSharedPreferences("PersonListPref", MODE_PRIVATE);
-        boolean isFirstLaunch = preferences.getBoolean("is_first_launch", true);
-
-        if (isFirstLaunch) {
-            clearPreferences(); // Clear preferences only on the first launch
-            preferences.edit().putBoolean("is_first_launch", false).apply(); // Set the flag to false
-        }
-
-
         imageViewPerson = findViewById(R.id.imageViewPerson);
         Button buttonAddImage = findViewById(R.id.buttonAddImage);
 
@@ -120,34 +110,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-
-
-    private void clearPreferences() {
-        // Get SharedPreferences
-        SharedPreferences preferences = getSharedPreferences("PersonListPref", MODE_PRIVATE);
-
-        // Clear all data in SharedPreferences
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.clear();
-        editor.apply(); // or editor.commit(); if you want it to be synchronous
-    }
-
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if (resultCode == Activity.RESULT_OK) {
-//            //Image Uri will not be null for RESULT_OK
-//            Uri uri = data != null ? data.getData() : null;
-//
-//            if (uri != null) {
-//                imgProfile.setImageURI(uri);
-//            }
-//        } else if (resultCode == ImagePicker.RESULT_ERROR) {
-//            Toast.makeText(this, ImagePicker.getError(data), Toast.LENGTH_SHORT).show();
-//        } else {
-//            Toast.makeText(this, "Task Cancelled", Toast.LENGTH_SHORT).show();
-//        }
-//    }
 
     // Birthdate
     private void updateLabel(){
@@ -199,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog.Builder confirmationBuilder = new AlertDialog.Builder(this);
 
 // 2. Chain together various setter methods to set the dialog characteristics.
-        confirmationBuilder.setMessage(String.format("Name : %s\nFirst Name : %s", edtName.getText().toString(), edtFirstName.getText().toString()))
+        confirmationBuilder.setMessage(String.format("Name : %s\nFirst Name : %s", edtName.getText().toString(), edtFirstName.getText().toString(), edtEmail.getText().toString()))
                 .setTitle(R.string.dialog_title);
 
         confirmationBuilder.setPositiveButton("Valider", (dialog, which) -> {

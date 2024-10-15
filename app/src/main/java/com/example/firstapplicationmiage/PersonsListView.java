@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,13 +19,14 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class PersonsListView extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private PersonAdapter personAdapter;
     private List<Person> personList;
-
+    private TextView tvNoContacts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,17 @@ public class PersonsListView extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        SharedPreferences sharedPreferences = getSharedPreferences("PersonListPref", MODE_PRIVATE);
+        Map<String, ?> allEntries = sharedPreferences.getAll();
+        tvNoContacts = findViewById(R.id.tvNoContacts);
+
+        if (allEntries.isEmpty()) {
+            // SharedPreferences is empty
+            tvNoContacts.setVisibility(View.VISIBLE);
+        } else {
+            tvNoContacts.setVisibility(View.INVISIBLE);
+        }
 
 
 
@@ -64,15 +77,7 @@ public class PersonsListView extends AppCompatActivity {
 
     }
 
-    private void clearPreferences() {
-        // Get SharedPreferences
-        SharedPreferences preferences = getSharedPreferences("PersonListPref", MODE_PRIVATE);
 
-        // Clear all data in SharedPreferences
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.clear();
-        editor.apply(); // or editor.commit(); if you want it to be synchronous
-    }
 
 
 }
