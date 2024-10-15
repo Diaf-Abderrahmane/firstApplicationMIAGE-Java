@@ -18,6 +18,8 @@ public class PersonListHelper {
         SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
+
+
         Gson gson = new Gson();
         String json = gson.toJson(personList);
         editor.putString(PERSON_LIST_KEY, json);

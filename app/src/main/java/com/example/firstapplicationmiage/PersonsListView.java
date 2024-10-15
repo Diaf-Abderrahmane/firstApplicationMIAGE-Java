@@ -1,8 +1,10 @@
 package com.example.firstapplicationmiage;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,6 +25,7 @@ public class PersonsListView extends AppCompatActivity {
     private PersonAdapter personAdapter;
     private List<Person> personList;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -35,6 +38,8 @@ public class PersonsListView extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+
 
         recyclerView = findViewById(R.id.recyclerView);
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -57,6 +62,16 @@ public class PersonsListView extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void clearPreferences() {
+        // Get SharedPreferences
+        SharedPreferences preferences = getSharedPreferences("PersonListPref", MODE_PRIVATE);
+
+        // Clear all data in SharedPreferences
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.clear();
+        editor.apply(); // or editor.commit(); if you want it to be synchronous
     }
 
 

@@ -1,4 +1,7 @@
 package com.example.firstapplicationmiage;
+import android.net.Uri;
+import android.widget.ImageView;
+
 import java.io.Serializable;  // To make the class Serializable
 
 public class Person implements Serializable {
@@ -10,8 +13,9 @@ public class Person implements Serializable {
     private String email;
     private String address;
     private String phoneNumber;
+    private String imageUri;
 
-    public Person(String name, String firstName, String gender, String birthDate, String email, String address, String phoneNumber) {
+    public Person(String name, String firstName, String gender, String birthDate, String email, String address, String phoneNumber, String imageUri) {
         this.name = name;
         this.firstName = firstName;
         this.gender = gender;
@@ -19,6 +23,7 @@ public class Person implements Serializable {
         this.email = email;
         this.address = address;
         this.phoneNumber = phoneNumber;
+        this.imageUri = imageUri;
     }
 
     public String getName() {
@@ -50,7 +55,11 @@ public class Person implements Serializable {
     }
 
 
+    public String getImageUri() {
+        return imageUri;
+    }
 
-
-
+    public void setImageUri(String imageUri) {
+        this.imageUri = imageUri;
+    }
 }
